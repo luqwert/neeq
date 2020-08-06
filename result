@@ -1,0 +1,110 @@
+jQuery331_1596699678177([
+  {
+    listInfo: {
+      …
+    }
+  }
+])
+0: {listInfo: {, …}}
+listInfo: {, …}
+content: [{companyCd: "833016", companyName: "希尔传媒", …}, {companyCd: "872766", companyName: "梅力更", …}, …]
+0: {companyCd: "833016", companyName: "希尔传媒", …
+}
+companyCd: "833016"
+companyName: "希尔传媒"
+destFilePath: "/disclosure/2020/2020-08-06/1596699595_401215.pdf"
+disclosurePostTitle: ""
+disclosureTitle: "[临时公告]希尔传媒:购买资产暨关联交易的公告"
+fileExt: "pdf"
+publishDate: "2020-08-06"
+xxfcbj: "1"
+xxzrlx: "C"
+1: {companyCd: "872766", companyName: "梅力更", …
+}
+2: {
+companyCd: "833016", companyName: "希尔传媒", …}
+3: {companyCd: "837287", companyName: "微诺时代", …
+}
+4: {companyCd: "871655", companyName: "知行股份",…
+}
+5: {
+companyCd: "872766", companyName: "梅力更", …
+}
+6: {
+companyCd: "837287", companyName: "微诺时代", …}
+7: {companyCd: "870773", companyName: "鹏海制药", …}
+8: {
+companyCd: "837287", companyName: "微诺时代", …}
+9: {companyCd: "872766", companyName: "梅力更", …
+}
+10: {companyCd: "838240", companyName: "九州信泰", …}
+11: {companyCd: "834618", companyName: "置辰智慧", …
+}
+12: {
+companyCd: "837287", companyName: "微诺时代", …}
+13: {companyCd: "870773", companyName: "鹏海制药", …
+}
+14: {companyCd: "873242", companyName: "陕西水电",…
+}
+15: {
+companyCd: "838240", companyName: "九州信泰", …
+}
+16: {
+companyCd: "430492", companyName: "老来寿", …}
+17: {companyCd: "834376", companyName: "冠新软件", …}
+18: {
+companyCd: "430664", companyName: "联合永道", …}
+19: {companyCd: "871396", companyName: "常辅股份", …
+}
+firstPage: true
+lastPage: false
+number: 0
+numberOfElements: 20
+size: 20
+sort: null
+totalElements: 21479
+totalPages: 1074
+
+
+单一查询
+jQuery331_1596699678175([{listInfo: {,…}}])
+0: {listInfo: {,…}}
+listInfo: {,…}
+content: [{companyCd: "833016", companyName: "希尔传媒",…}, {companyCd: "833016", companyName: "希尔传媒",…},…]
+0: {companyCd: "833016", companyName: "希尔传媒",…}
+companyCd: "833016"
+companyName: "希尔传媒"
+destFilePath: "/disclosure/2020/2020-08-06/1596699595_401215.pdf"
+disclosurePostTitle: ""
+disclosureTitle: "[临时公告]希尔传媒:购买资产暨关联交易的公告"
+fileExt: "pdf"
+publishDate: "2020-08-06"
+xxfcbj: "1"
+xxzrlx: "C"
+1: {companyCd: "833016", companyName: "希尔传媒",…}
+2: {companyCd: "833016", companyName: "希尔传媒",…}
+3: {companyCd: "833016", companyName: "希尔传媒",…}
+4: {companyCd: "833016", companyName: "希尔传媒",…}
+5: {companyCd: "833016", companyName: "希尔传媒",…}
+6: {companyCd: "833016", companyName: "希尔传媒",…}
+7: {companyCd: "833016", companyName: "希尔传媒",…}
+8: {companyCd: "833016", companyName: "希尔传媒",…}
+9: {companyCd: "833016", companyName: "希尔传媒",…}
+10: {companyCd: "833016", companyName: "希尔传媒",…}
+11: {companyCd: "833016", companyName: "希尔传媒",…}
+12: {companyCd: "833016", companyName: "希尔传媒",…}
+13: {companyCd: "833016", companyName: "希尔传媒",…}
+14: {companyCd: "833016", companyName: "希尔传媒",…}
+15: {companyCd: "833016", companyName: "希尔传媒",…}
+16: {companyCd: "833016", companyName: "希尔传媒",…}
+17: {companyCd: "833016", companyName: "希尔传媒",…}
+18: {companyCd: "833016", companyName: "希尔传媒",…}
+19: {companyCd: "833016", companyName: "希尔传媒",…}
+firstPage: true
+lastPage: false
+number: 0
+numberOfElements: 20
+size: 20
+sort: null
+totalElements: 262
+totalPages: 14
