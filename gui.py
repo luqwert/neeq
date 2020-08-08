@@ -36,7 +36,7 @@ def init_db():
         ''')
     conn.commit()
     conn.close()
-    label70 = Label(root, text='数据库初始化成功', font=('楷体', 12), fg='black')
+    label70 = Label(root, text='数据库初始化成功', font=('楷体', 10), fg='black')
     label70.grid(row=7, column=0, columnspan=2, sticky=W)
 
 
@@ -49,14 +49,15 @@ def _format_addr(s):
 
 # 发送邮件
 def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, destFilePath):
-    # mail_host = "smtp.qq.com"  # 设置服务器
-    # mail_user = "228383562@qq.com"  # 用户名
-    # mail_pass = "waajnvtmdhiucbef"  # 口令
-    # sender = '228383562@qq.com'
-    mail_host = "smtp.163.com"  # 设置服务器
-    mail_user = "zj_mao@163.com"  # 用户名
-    mail_pass = "ZWTBWGYTNLOOSEDC"  # 口令
-    sender = 'zj_mao@163.com'
+    mail_host = "smtp.qq.com"  # 设置服务器
+
+    mail_user = "228383562@qq.com"  # 用户名
+    mail_pass = "waajnvtmdhiucbef"  # 口令
+    sender = '228383562@qq.com'
+    # mail_host = "smtp.163.com"  # 设置服务器
+    # mail_user = "zj_mao@163.com"  # 用户名
+    # mail_pass = "ZWTBWGYTNLOOSEDC"  # 口令
+    # sender = 'zj_mao@163.com'
 
     receiversName = '收件邮箱'
     receivers = receivers
@@ -66,7 +67,7 @@ def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, d
     公告日期：%s <br>
     公告标题：%s <br>
     公告链接：%s <br>
-    <p>这是公告推送测试... </p>
+    <p>这是全国中小企业股份转让系统查询推送</p>
     """ % (companyCd, companyName, publishDate, disclosureTitle, destFilePath)
 
     main_msg = MIMEMultipart()
@@ -76,8 +77,9 @@ def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, d
     main_msg['Subject'] = Header(disclosureTitle, 'utf-8').encode()
 
     try:
-        # smtpObj = smtplib.SMTP('smtp.163.com', 587)
-        smtpObj = smtplib.SMTP('smtp.163.com', 25)
+        smtpObj = smtplib.SMTP('smtp.qq.com', 587)
+        # smtp = smtplib.SMTP_SSL(mailserver)
+        # smtpObj = smtplib.SMTP('smtp.163.com', 25)
         smtpObj.ehlo()
         smtpObj.starttls()
         smtpObj.login(mail_user, mail_pass)
@@ -85,11 +87,11 @@ def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, d
         smtpObj.quit()
         print("邮件发送成功")
         logging.info("邮件发送成功")
-        return True
+        return 1
     except smtplib.SMTPException as e:
         print("无法发送邮件")
         logging.error("Error: 无法发送邮件, %s" % e)
-        return False
+        return 0
 
 
 def run():
@@ -191,7 +193,7 @@ def run():
                             xxzrlx = li['xxzrlx']
                             result = c.execute("SELECT * FROM announcement where filePath = '%s'" % destFilePath)
                             if result.fetchone():
-                                print(disclosureTitle, " 该公告数据库中已存在")
+                                print(disclosureTitle, " 该公告数据库中已存在\n")
                                 logging.info(disclosureTitle + " 该公告数据库中已存在")
                                 # label90 = Label(root, text=disclosureTitle + " 该公告数据库中已存在", font=('楷体', 12), fg='black')
                                 # label90.grid(row=9, column=0, columnspan=2, sticky=W)
@@ -199,18 +201,19 @@ def run():
                                 # 发送邮件
                                 mailResult = sendMails(receiveMail, companyCd2, companyName2, disclosureTitle, publishDate,
                                           destFilePath)
-                                if mailResult is True :
+                                # print(mailResult)
+                                if mailResult == 1:
                                     data = "NULL,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (
                                         companyCd2, companyName2, disclosureTitle, publishDate, destFilePath)
                                     # print(data, "\n")
                                     c.execute('INSERT INTO announcement VALUES (%s)' % data)
                                     db.commit()
-                                    print(disclosureTitle, " 该公告已存入数据库")
+                                    print(disclosureTitle, " 该公告已存入数据库\n")
                                     logging.info(disclosureTitle + " 该公告已存入数据库")
                                 # label90 = Label(root, text=disclosureTitle + " 该公告已存入数据库", font=('楷体', 12), fg='black')
                                 # label90.grid(row=9, column=0, columnspan=2, sticky=W)
-                                time.sleep(1)
-                    time.sleep(3)  # 获取一个页面后休息3秒，防止请求服务器过快
+                                time.sleep(5)
+                    time.sleep(20)  # 获取一个页面后休息3秒，防止请求服务器过快
                 db.close()
 
         if companyName != '':
@@ -291,7 +294,7 @@ def run():
                             xxzrlx = li['xxzrlx']
                             result = c.execute("SELECT * FROM announcement where filePath = '%s'" % destFilePath)
                             if result.fetchone():
-                                print(disclosureTitle, " 该公告数据库中已存在")
+                                print(disclosureTitle, " 该公告数据库中已存在\n")
                                 logging.info(disclosureTitle + " 该公告数据库中已存在")
                                 # label90 = Label(root, text=disclosureTitle + " 该公告数据库中已存在", font=('楷体', 12), fg='black')
                                 # label90.grid(row=9, column=0, columnspan=2, sticky=W)
@@ -299,13 +302,14 @@ def run():
                                 # 发送邮件
                                 mailResult = sendMails(receiveMail, companyCd2, companyName2, disclosureTitle, publishDate,
                                           destFilePath)
-                                if mailResult is True :
+                                # print(mailResult)
+                                if mailResult == 1:
                                     data = "NULL,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (
                                         companyCd2, companyName2, disclosureTitle, publishDate, destFilePath)
                                     # print(data, "\n")
                                     c.execute('INSERT INTO announcement VALUES (%s)' % data)
                                     db.commit()
-                                    print(disclosureTitle, " 该公告已存入数据库")
+                                    print(disclosureTitle, " 该公告已存入数据库\n")
                                     logging.info(disclosureTitle + " 该公告已存入数据库")
 
                                 # label90 = Label(root, text=disclosureTitle + " 该公告已存入数据库", font=('楷体', 12), fg='black')
@@ -313,71 +317,72 @@ def run():
                                 time.sleep(1)
                     time.sleep(3)  # 获取一个页面后休息3秒，防止请求服务器过快
                 db.close()
-
+        logging.info("本次查询结束，10分钟后开始下次查询")
         time.sleep(600)
     # for companyCd in companyCd_list:
 
 
 logging.basicConfig(filename='./log.log', format='[%(asctime)s-%(filename)s-%(levelname)s:%(message)s]',
-                    level=logging.DEBUG, filemode='a', datefmt='%Y-%m-%d%I:%M:%S %p')
+                    level=logging.DEBUG, filemode='a', datefmt='%Y-%m-%d %I:%M:%S %p')
 URL = 'http://www.neeq.com.cn/disclosureInfoController/infoResult_zh.do?callback=jQuery331_1596699678177'
 root = Tk()
 root.title('中小企业股份转让系统公告查询工具')
-root.geometry('465x240')
+root.geometry('430x190')
 root.geometry('+400+200')
 # 文本输入框前的提示文本
-label = Label(root, text='公司代码：', width=10, font=('楷体', 15), fg='black')
+label = Label(root, text='公司代码：', width=10, font=('楷体', 12), fg='black')
 label.grid(row=0, column=0, )
 # 文本输入框-公司代码
-entry = Entry(root, font=('微软雅黑', 15), width=29)
+entry = Entry(root, font=('微软雅黑', 12), width=35)
 entry.grid(row=0, column=1, sticky=W)
 
 # 文本输入框前的提示文本
-label10 = Label(root, text='公司名称：', width=10, font=('楷体', 15), fg='black')
+label10 = Label(root, text='公司名称：', width=10, font=('楷体', 12), fg='black')
 label10.grid(row=1, column=0)
 # 文本输入框-公司名称
-entry11 = Entry(root, font=('微软雅黑', 15), width=29)
+entry11 = Entry(root, font=('微软雅黑', 12), width=35)
 entry11.grid(row=1, column=1, sticky=W)
 
 # 开始日期
-label20 = Label(root, text='起始日期：', width=10, font=('楷体', 15), fg='black')
+label20 = Label(root, text='起始日期：', width=10, font=('楷体', 12), fg='black')
 label20.grid(row=2, column=0)
 # 文本输入框-开始日期
 sd = StringVar()
 sd.set((datetime.today() + timedelta(days=-30)).strftime("%Y-%m-%d"))
-entry21 = Entry(root, textvariable=sd, font=('微软雅黑', 15), width=29)
+entry21 = Entry(root, textvariable=sd, font=('微软雅黑', 12), width=35)
 entry21.grid(row=2, column=1, sticky=W)
 
 # 结束日期
-label30 = Label(root, text='结束日期：', width=10, font=('楷体', 15), fg='black')
+label30 = Label(root, text='结束日期：', width=10, font=('楷体', 12), fg='black')
 label30.grid(row=3, column=0)
 # 文本输入框-结束日期
 # datetime.today()
-ed = StringVar()
-ed.set(datetime.today().strftime("%Y-%m-%d"))
-entry31 = Entry(root, textvariable=ed, font=('微软雅黑', 15), width=29)
+# ed = StringVar()
+# ed.set(datetime.today().strftime("%Y-%m-%d"))
+# entry31 = Entry(root, textvariable=ed, font=('微软雅黑', 12), width=29)
+entry31 = Entry(root, font=('微软雅黑', 12), width=35)
 entry31.grid(row=3, column=1, sticky=W)
 
 # 收件邮箱
-label40 = Label(root, text='收件邮箱：', font=('楷体', 15), fg='black')
+label40 = Label(root, text='收件邮箱：', font=('楷体', 12), fg='black')
 label40.grid(row=4, column=0)
 # 文本输入框-收件邮箱
 receiveMail = StringVar()
 receiveMail.set('6110559273@qq.com')
 # receiveMail.set('lusheng1234@126.com')
-entry41 = Entry(root, textvariable=receiveMail, font=('微软雅黑', 15), width=29)
+entry41 = Entry(root, textvariable=receiveMail, font=('微软雅黑', 12), width=35)
 entry41.grid(row=4, column=1, sticky=W)
 
 # 初始化数据库
-button50 = Button(root, text='初始化', width=10, font=('幼圆', 15), fg='purple', command=init_db)
+button50 = Button(root, text='初始化', width=8, font=('幼圆', 12), fg='purple', command=init_db)
 button50.grid(row=5, column=0)
 
 # 开始按钮
 
-button51 = Button(root, text='开始', width=20, font=('幼圆', 15), fg='purple', command=run)
+button51 = Button(root, text='开始', width=20, font=('幼圆', 12), fg='purple', command=run)
 button51.grid(row=5, column=1)
 
-label60 = Label(root, text='  ', font=('楷体', 8), fg='black')
+label60 = Label(root, text='  ', font=('楷体', 6), fg='black')
 label60.grid(row=6, column=0, columnspan=2, sticky=W)
 # label70 = Label(root, text='  ', font=('楷体', 8), fg='black')
 # label70.grid(row=6, column=0, columnspan=2, sticky=W)
