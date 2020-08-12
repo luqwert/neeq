@@ -2,6 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdedb787-51b1-4ff6-9760-8e734edce012" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/announcement.db" beforeDir="false" afterPath="$PROJECT_DIR$/announcement.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/EXE-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/PKG-00.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/PKG-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/Tree-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/Tree-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/Tree-01.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/Tree-01.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/base_library.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/gui.exe.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/gui.exe.manifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/warn-gui.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/warn-gui.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/gui/xref-gui.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/gui/xref-gui.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gui.spec" beforeDir="false" afterPath="$PROJECT_DIR$/gui.spec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.log" beforeDir="false" afterPath="$PROJECT_DIR$/log.log" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,18 +27,44 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/neeq$gui.coverage" NAME="gui Coverage Results" MODIFIED="1596879392152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neeq$tuopan.coverage" NAME="tuopan Coverage Results" MODIFIED="1597252882494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neeq$gui.coverage" NAME="gui Coverage Results" MODIFIED="1597242220436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FavoritesManager">
     <favorites_list name="neeq" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="331" column="13" lean-forward="true" selection-start-line="331" selection-start-column="13" selection-end-line="331" selection-end-column="13" />
+            <state relative-caret-position="155">
+              <caret line="110" column="24" selection-end-line="401" />
+              <folding>
+                <element signature="e#66#78#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/tkinter/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="1947" selection-start-line="1947" selection-end-line="1947" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tuopan.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="622" lean-forward="true" selection-start-line="622" selection-end-line="622" />
+              <folding>
+                <element signature="e#66#78#0" expanded="true" />
+                <element signature="e#1330#2717#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -43,13 +85,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/gui.py" />
+        <option value="$PROJECT_DIR$/tuopan.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="320" />
-    <option name="y" value="117" />
-    <option name="width" value="1559" />
+    <option name="x" value="693" />
+    <option name="y" value="142" />
+    <option name="width" value="1560" />
     <option name="height" value="1140" />
   </component>
   <component name="ProjectId" id="1fiSuQXe3HTh1VUM1vm37VEn3L8" />
@@ -58,6 +101,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -69,7 +113,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -95,7 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.gui">
+  <component name="RunManager" selected="Python.tuopan">
     <configuration name="announcement" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neeq" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -162,8 +205,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tuopan" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="neeq" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tuopan.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tuopan" />
         <item itemvalue="Python.gui" />
         <item itemvalue="Python.announcement" />
         <item itemvalue="Python.init_db" />
@@ -184,22 +250,47 @@
       <workItem from="1596761970851" duration="23287000" />
       <workItem from="1596877261763" duration="537000" />
       <workItem from="1596877939906" duration="3450000" />
+      <workItem from="1597149832954" duration="947000" />
+      <workItem from="1597150807681" duration="7111000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3987000" />
+    <option name="totallyTimeSpent" value="12045000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="256" y="94" width="1247" height="912" extended-state="0" />
+    <frame x="555" y="114" width="1248" height="912" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25399494" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49786323" visible="true" weight="0.2621849" />
+      <window_info id="Structure" order="1" sideWeight="0.50213677" side_tool="true" weight="0.2621849" />
+      <window_info id="Favorites" order="2" sideWeight="0.50213677" side_tool="true" weight="0.2621849" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32948717" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49915966" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50084037" side_tool="true" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32948717" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.32941177" />
+      <window_info anchor="right" id="Database" order="4" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2621849" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32948717" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32948717" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -208,14 +299,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32948717" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info anchor="right" id="Database" order="4" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -266,6 +357,13 @@
     </state>
     <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1596700437608" />
   </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="s.root.tk" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/neeq$gui.coverage" NAME="gui Coverage Results" MODIFIED="1596789558766" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neeq$init_db.coverage" NAME="init_db Coverage Results" MODIFIED="1596764415753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -274,8 +372,36 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="331" column="13" lean-forward="true" selection-start-line="331" selection-start-column="13" selection-end-line="331" selection-end-column="13" />
+        <state relative-caret-position="155">
+          <caret line="110" column="24" selection-end-line="401" />
+          <folding>
+            <element signature="e#66#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/tkinter/simpledialog.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="281" column="13" selection-start-line="281" selection-start-column="13" selection-end-line="281" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35-32/Lib/tkinter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="1947" selection-start-line="1947" selection-end-line="1947" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tuopan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="622" lean-forward="true" selection-start-line="622" selection-end-line="622" />
+          <folding>
+            <element signature="e#66#78#0" expanded="true" />
+            <element signature="e#1330#2717#0" />
+          </folding>
         </state>
       </provider>
     </entry>

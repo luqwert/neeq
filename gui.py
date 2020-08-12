@@ -16,6 +16,8 @@ from email.mime.text import MIMEText
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 import logging
+import win32gui
+import win32con
 
 
 def init_db():
@@ -112,7 +114,8 @@ def run():
     # if len(endTime) != 10:
     #     messagebox.showinfo('提示', '结束日期格式不对，请检查')
     #     return
-
+    h = win32gui.FindWindow('TkTopLevel','中小企业股份转让系统公告查询工具')
+    win32gui.ShowWindow(h,win32con.SW_HIDE)
     while 1:
         companyCd = entry.get().strip()
         if companyCd != '':
@@ -368,7 +371,7 @@ label40 = Label(root, text='收件邮箱：', font=('楷体', 12), fg='black')
 label40.grid(row=4, column=0)
 # 文本输入框-收件邮箱
 receiveMail = StringVar()
-receiveMail.set('6110559273@qq.com')
+receiveMail.set('lusheng1234@126.com')
 # receiveMail.set('lusheng1234@126.com')
 entry41 = Entry(root, textvariable=receiveMail, font=('微软雅黑', 12), width=35)
 entry41.grid(row=4, column=1, sticky=W)

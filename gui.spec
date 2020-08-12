@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['gui.py'],
-             pathex=['E:\\python\\neeq'],
+             pathex=['J:\\python\\neeq'],
              binaries=[],
              datas=[],
              hiddenimports=[],
