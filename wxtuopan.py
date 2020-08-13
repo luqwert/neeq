@@ -1,62 +1,52 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-__author__ = 'jethro'
 import wx
-import wx.adv
+import wx.xrc
 
 
-class MyTaskBarIcon(wx.adv.TaskBarIcon):
-    ICON = "icon.ico"  # 图标地址
-    ID_ABOUT = wx.NewId()  # 菜单选项“关于”的ID
-    ID_EXIT = wx.NewId()  # 菜单选项“退出”的ID
-    ID_SHOW_WEB = wx.NewId()  # 菜单选项“显示页面”的ID
-    TITLE = "二维码发送程序" #鼠标移动到图标上显示的文字
+###########################################################################
+## Class MyFrame3
+###########################################################################
 
-    def __init__(self):
-        wx.adv.TaskBarIcon.__init__(self)
-        self.SetIcon(wx.Icon(self.ICON), self.TITLE)  # 设置图标和标题
-        self.Bind(wx.EVT_MENU, self.onAbout, id=self.ID_ABOUT)  # 绑定“关于”选项的点击事件
-        self.Bind(wx.EVT_MENU, self.onExit, id=self.ID_EXIT)  # 绑定“退出”选项的点击事件
-        self.Bind(wx.EVT_MENU, self.onShowWeb, id=self.ID_SHOW_WEB)  # 绑定“显示页面”选项的点击事件
+class MyFrame3(wx.Frame):
 
-    # “关于”选项的事件处理器
-    def onAbout(self, event):
-        wx.MessageBox('程序作者：JethroCup\n最后更新日期：2017-8-13', "关于")
+    def __init__(self, parent):
+        wx.Frame.__init__(self, parent, id=wx.ID_ANY, title='我的GUI程序', pos=wx.DefaultPosition,
+                          size=wx.Size(500, 300), style=wx.DEFAULT_FRAME_STYLE | wx.TAB_TRAVERSAL)
 
-    # “退出”选项的事件处理器
-    def onExit(self, event):
-        wx.Exit()
+        self.SetSizeHints(wx.DefaultSize, wx.DefaultSize)
 
-    # “显示页面”选项的事件处理器
-    def onShowWeb(self, event):
+        bSizer2 = wx.BoxSizer(wx.VERTICAL)
+
+        self.m_button2 = wx.Button(self, wx.ID_ANY, u"打开文件", wx.DefaultPosition, wx.DefaultSize, 0)
+        self.m_button2.SetFont(wx.Font(18, wx.FONTFAMILY_SWISS, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, "微软雅黑"))
+        bSizer2.Add(self.m_button2, 1, wx.ALL | wx.EXPAND, 5)
+
+        self.SetSizer(bSizer2)
+        self.Layout()
+        self.m_statusBar2 = self.CreateStatusBar(1, wx.STB_SIZEGRIP, wx.ID_ANY)
+
+        self.Centre(wx.BOTH)
+
+        # Connect Events
+        self.m_button2.Bind(wx.EVT_BUTTON, self.m_button2OnButtonClick)
+
+    def __del__(self):
         pass
 
-    # 创建菜单选项
-    def CreatePopupMenu(self):
-        menu = wx.Menu()
-        for mentAttr in self.getMenuAttrs():
-            menu.Append(mentAttr[1], mentAttr[0])
-        return menu
+    # Virtual event handlers, overide them in your derived class
+    def m_button2OnButtonClick(self, event):
+        openFileDialog = wx.FileDialog(frame, "请选择要打开的Excel文件", "", "",
+                                       "Excel格式 (*.xls)|*.xls",
+                                       wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
 
-    # 获取菜单的属性元组
-    def getMenuAttrs(self):
-        return [('进入程序', self.ID_SHOW_WEB),
-                ('关于', self.ID_ABOUT),
-                ('退出', self.ID_EXIT)]
+        if openFileDialog.ShowModal() == wx.ID_OK:
+            filePath = openFileDialog.GetPath()
+            if wx.MessageBox("数据处理完成", "提示", wx.OK | wx.ICON_INFORMATION) == wx.OK:
+                self.m_statusBar2.SetStatusText(filePath)
 
-
-class MyFrame(wx.Frame):
-    def __init__(self):
-        wx.Frame.__init__(self)
-        MyTaskBarIcon()#显示系统托盘图标
+        openFileDialog.Destroy()
 
 
-class MyApp(wx.App):
-    def OnInit(self):
-        MyFrame()
-        return True
-
-
-if __name__ == "__main__":
-    app = MyApp()
-    app.MainLoop()
+app = wx.App(False)
+frame = MyFrame3(None)
+frame.Show()
+app.MainLoop()

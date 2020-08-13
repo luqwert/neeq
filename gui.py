@@ -16,6 +16,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 import logging
+import pywintypes
 import win32api
 import win32gui
 import win32con
@@ -342,7 +343,7 @@ def run():
                                 time.sleep(1)
                     time.sleep(3)  # 获取一个页面后休息3秒，防止请求服务器过快
                 db.close()
-        logging.info("本次查询结束，10分钟后开始下次查询")
+        logging.info("本次查询结束 .，10分钟后开始下次查询")
         time.sleep(600)
     # for companyCd in companyCd_list:
 
