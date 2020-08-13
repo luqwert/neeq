@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
 # @Author  : lusheng
-import email
+import os
 from tkinter import *
 from tkinter import messagebox
 import sqlite3
@@ -16,6 +16,7 @@ from email.mime.text import MIMEText
 from email.header import Header
 from email.mime.multipart import MIMEMultipart
 import logging
+import win32api
 import win32gui
 import win32con
 
@@ -53,13 +54,13 @@ def _format_addr(s):
 def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, destFilePath):
     mail_host = "smtp.qq.com"  # 设置服务器
 
-    mail_user = "228383562@qq.com"  # 用户名
-    mail_pass = "waajnvtmdhiucbef"  # 口令
-    sender = '228383562@qq.com'
-    # mail_host = "smtp.163.com"  # 设置服务器
-    # mail_user = "zj_mao@163.com"  # 用户名
-    # mail_pass = "ZWTBWGYTNLOOSEDC"  # 口令
-    # sender = 'zj_mao@163.com'
+    # mail_user = "228383562@qq.com"  # 用户名
+    # mail_pass = "waajnvtmdhiucbef"  # 口令
+    # sender = '228383562@qq.com'
+
+    mail_user = "610559273@qq.com"  # 用户名
+    mail_pass = "xrljvzsvdzbbbfbb"  # 口令
+    sender = '610559273@qq.com'
 
     receiversName = '收件邮箱'
     receivers = receivers
@@ -74,8 +75,8 @@ def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, d
 
     main_msg = MIMEMultipart()
     main_msg.attach(MIMEText(mail_msg, 'html', 'utf-8'))
-    main_msg['From'] = _format_addr(u'<%s>' % mail_user)
-    main_msg['To'] = _format_addr(u'<%s>' % receivers)
+    main_msg['From'] = _format_addr(u'公告推送<%s>' % mail_user)
+    main_msg['To'] = _format_addr(u'公告收件<%s>' % receivers)
     main_msg['Subject'] = Header(disclosureTitle, 'utf-8').encode()
 
     try:
@@ -116,6 +117,27 @@ def run():
     #     return
     h = win32gui.FindWindow('TkTopLevel','中小企业股份转让系统公告查询工具')
     win32gui.ShowWindow(h,win32con.SW_HIDE)
+
+    hinst = win32api.GetModuleHandle(None)
+    iconPathName = "icon.ico"
+    if os.path.isfile(iconPathName):
+        icon_flags = win32con.LR_LOADFROMFILE | win32con.LR_DEFAULTSIZE
+        hicon = win32gui.LoadImage(hinst, iconPathName, win32con.IMAGE_ICON, 0, 0, icon_flags)
+    else:
+        print('???icon???????')
+        hicon = win32gui.LoadIcon(0, win32con.IDI_APPLICATION)
+    flags = win32gui.NIF_ICON | win32gui.NIF_MESSAGE | win32gui.NIF_TIP
+    nid = (h, 0, flags, win32con.WM_USER + 20, hicon, "公告推送")
+    try:
+        win32gui.Shell_NotifyIcon(win32gui.NIM_ADD, nid)
+    except:
+        print("Failed to add the taskbar icon - is explorer running?")
+
+
+    # flags = win32gui.NIF_ICON | win32gui.NIF_MESSAGE | win32gui.NIF_TIP
+    # nid = (h, 0, win32gui.NIF_INFO, win32con.WM_USER + 20, 'icon.ico', "tooltip")
+    # win32gui.Shell_NotifyIcon(win32gui.NIM_ADD, nid)
+
     while 1:
         companyCd = entry.get().strip()
         if companyCd != '':
@@ -371,7 +393,7 @@ label40 = Label(root, text='收件邮箱：', font=('楷体', 12), fg='black')
 label40.grid(row=4, column=0)
 # 文本输入框-收件邮箱
 receiveMail = StringVar()
-receiveMail.set('lusheng1234@126.com')
+receiveMail.set('610559273@qq.com')
 # receiveMail.set('lusheng1234@126.com')
 entry41 = Entry(root, textvariable=receiveMail, font=('微软雅黑', 12), width=35)
 entry41.grid(row=4, column=1, sticky=W)

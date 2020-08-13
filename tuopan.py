@@ -2,6 +2,7 @@
 # _*_ coding:utf-8 _*_
 # @Author  : lusheng
 import email
+import threading
 from tkinter import *
 from tkinter import messagebox
 import sqlite3
@@ -94,6 +95,14 @@ def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, d
         print("无法发送邮件")
         logging.error("Error: 无法发送邮件, %s" % e)
         return 0
+
+def fun_timer(s,companyCd,companyName,startTime,endTime,receiveMail):
+    print('Hello Timer!')
+    global timer
+    run(s,companyCd,companyName,startTime,endTime,receiveMail)
+    timer = threading.Timer(600, fun_timer(s,companyCd,companyName,startTime,endTime,receiveMail))
+    timer.start()
+
 
 
 def run(s,companyCd,companyName,startTime,endTime,receiveMail):
@@ -593,7 +602,7 @@ class _Main:  #调用SysTrayIcon的Demo窗口
 
         # 开始按钮
 
-        button51 = Button(s.root, text='开始', width=20, font=('幼圆', 12), fg='purple', command=lambda:run(s,entry.get().strip(),entry11.get().strip(),entry21.get().strip(),entry31.get().strip(),entry41.get().strip()))
+        button51 = Button(s.root, text='开始', width=20, font=('幼圆', 12), fg='purple', command=lambda:fun_timer(s,entry.get().strip(),entry11.get().strip(),entry21.get().strip(),entry31.get().strip(),entry41.get().strip()))
         button51.grid(row=5, column=1)
 
         label60 = Label(s.root, text='  ', font=('楷体', 6), fg='black')
@@ -617,7 +626,7 @@ class _Main:  #调用SysTrayIcon的Demo窗口
         #点击右键菜单项目会传递SysTrayIcon自身给引用的函数，所以这里的_sysTrayIcon = s.sysTrayIcon
         #只是一个改图标的例子，不需要的可以删除此函数
         # _sysTrayIcon.icon = icon
-        run(s, entry.get().strip(), entry11.get().strip(), entry21.get().strip(), entry31.get().strip(),
+        fun_timer(s, entry.get().strip(), entry11.get().strip(), entry21.get().strip(), entry31.get().strip(),
             entry41.get().strip())
         return
 
