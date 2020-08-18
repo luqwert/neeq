@@ -20,6 +20,7 @@ import pywintypes
 import win32api
 import win32gui
 import win32con
+from threading import Thread
 
 
 def init_db():
@@ -55,13 +56,13 @@ def _format_addr(s):
 def sendMails(receivers, companyCd, companyName, disclosureTitle, publishDate, destFilePath):
     mail_host = "smtp.qq.com"  # 设置服务器
 
-    # mail_user = "228383562@qq.com"  # 用户名
-    # mail_pass = "waajnvtmdhiucbef"  # 口令
-    # sender = '228383562@qq.com'
-
-    mail_user = "610559273@qq.com"  # 用户名
-    mail_pass = "xrljvzsvdzbbbfbb"  # 口令
-    sender = '610559273@qq.com'
+    mail_user = "228383562@qq.com"  # 用户名
+    mail_pass = "waajnvtmdhiucbef"  # 口令
+    sender = '228383562@qq.com'
+    #
+    # mail_user = "610559273@qq.com"  # 用户名
+    # mail_pass = "xrljvzsvdzbbbfbb"  # 口令
+    # sender = '610559273@qq.com'
 
     receiversName = '收件邮箱'
     receivers = receivers
@@ -139,213 +140,217 @@ def run():
     # nid = (h, 0, win32gui.NIF_INFO, win32con.WM_USER + 20, 'icon.ico', "tooltip")
     # win32gui.Shell_NotifyIcon(win32gui.NIM_ADD, nid)
 
-    while 1:
-        companyCd = entry.get().strip()
-        if companyCd != '':
-            companyCd_list = companyCd.split(';')
-            for ccd in companyCd_list:
-                db = sqlite3.connect("announcement.db")
-                c = db.cursor()
-                data = {
-                    "disclosureType[]": 5,
-                    "disclosureSubtype[]": None,
-                    "page": 0,
-                    "startTime": startTime,
-                    "endTime": endTime,
-                    "companyCd": ccd,
-                    "isNewThree": 1,
-                    "keyword": None,
-                    "xxfcbj[]": None,
-                    "hyType[]": None,
-                    "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath", "publishDate",
-                                     "xxfcbj",
-                                     "destFilePath", "fileExt", "xxzrlx"],
-                    "sortfield": "xxssdq",
-                    "sorttype": "asc",
-                }
-                news_list = []
-                response1 = requests.post(URL, data)
-                # print(response1.text)
-                response2 = re.search('(?<=\(\[)(.*?)(?=]\))', response1.text).group()
-                # print(response2)
-                j = json.loads(response2)['listInfo']
-                if j['content'] == []:
-                    messagebox.showinfo('提示', '没有查询到信息，请检查公司代码或名称是否正确')
-                    return
-                else:
-                    totalElements = j['totalElements']
-                    totalPages = j['totalPages']
-                    logging.info("通过代码%s查询到%d条公告，共%d页" % (ccd, totalElements, totalPages))
-                    # label70 = Label(root, text="通过代码%s查询到%d条公告，共%d页" % (ccd, totalElements, totalPages),
-                    #                 font=('楷体', 12), fg='black')
-                    # label70.grid(row=7, column=0, columnspan=2, sticky=W)
+    def get():
+        while 1:
+            companyCd = entry.get().strip()
+            if companyCd != '':
+                companyCd_list = companyCd.split(';')
+                for ccd in companyCd_list:
+                    db = sqlite3.connect("announcement.db")
+                    c = db.cursor()
+                    data = {
+                        "disclosureType[]": 5,
+                        "disclosureSubtype[]": None,
+                        "page": 0,
+                        "startTime": startTime,
+                        "endTime": endTime,
+                        "companyCd": ccd,
+                        "isNewThree": 1,
+                        "keyword": None,
+                        "xxfcbj[]": None,
+                        "hyType[]": None,
+                        "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath", "publishDate",
+                                         "xxfcbj",
+                                         "destFilePath", "fileExt", "xxzrlx"],
+                        "sortfield": "xxssdq",
+                        "sorttype": "asc",
+                    }
+                    news_list = []
+                    response1 = requests.post(URL, data)
+                    # print(response1.text)
+                    response2 = re.search('(?<=\(\[)(.*?)(?=]\))', response1.text).group()
+                    # print(response2)
+                    j = json.loads(response2)['listInfo']
+                    if j['content'] == []:
+                        messagebox.showinfo('提示', '没有查询到信息，请检查公司代码或名称是否正确')
+                        return
+                    else:
+                        totalElements = j['totalElements']
+                        totalPages = j['totalPages']
+                        logging.info("通过代码%s查询到%d条公告，共%d页" % (ccd, totalElements, totalPages))
+                        # label70 = Label(root, text="通过代码%s查询到%d条公告，共%d页" % (ccd, totalElements, totalPages),
+                        #                 font=('楷体', 12), fg='black')
+                        # label70.grid(row=7, column=0, columnspan=2, sticky=W)
 
-                    for n in range(totalPages):
-                        data = {
-                            "disclosureType[]": 5,
-                            "disclosureSubtype[]": None,
-                            "page": n,
-                            "startTime": startTime,
-                            "endTime": endTime,
-                            "companyCd": ccd,
-                            "isNewThree": 1,
-                            "keyword": None,
-                            "xxfcbj[]": None,
-                            "hyType[]": None,
-                            "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath",
-                                             "publishDate",
-                                             "xxfcbj",
-                                             "destFilePath", "fileExt", "xxzrlx"],
-                            "sortfield": "xxssdq",
-                            "sorttype": "asc",
-                        }
-                        logging.info("正在处理第%d页" % (n + 1))
-                        # label80 = Label(root, text="正在处理第%d页" % (n + 1), font=('楷体', 12), fg='black')
-                        # label80.grid(row=8, column=0, columnspan=2, sticky=W)
+                        for n in range(totalPages):
+                            data = {
+                                "disclosureType[]": 5,
+                                "disclosureSubtype[]": None,
+                                "page": n,
+                                "startTime": startTime,
+                                "endTime": endTime,
+                                "companyCd": ccd,
+                                "isNewThree": 1,
+                                "keyword": None,
+                                "xxfcbj[]": None,
+                                "hyType[]": None,
+                                "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath",
+                                                 "publishDate",
+                                                 "xxfcbj",
+                                                 "destFilePath", "fileExt", "xxzrlx"],
+                                "sortfield": "xxssdq",
+                                "sorttype": "asc",
+                            }
+                            logging.info("正在处理第%d页" % (n + 1))
+                            # label80 = Label(root, text="正在处理第%d页" % (n + 1), font=('楷体', 12), fg='black')
+                            # label80.grid(row=8, column=0, columnspan=2, sticky=W)
 
-                        response3 = requests.post(URL, data)
-                        response4 = re.search('(?<=\(\[)(.*?)(?=]\))', response3.text).group()
-                        j = json.loads(response4)['listInfo']
-                        list = j['content']
-                        # 循环本页内容查询数据库、发送邮件
-                        for li in list:
-                            # print(li)
-                            companyCd2 = li['companyCd']
-                            companyName2 = li['companyName']
-                            destFilePath = "http://www.neeq.com.cn" + li['destFilePath']
-                            disclosureTitle = li['disclosureTitle']
-                            publishDate = li['publishDate']
-                            xxfcbj = li['xxfcbj']
-                            xxzrlx = li['xxzrlx']
-                            result = c.execute("SELECT * FROM announcement where filePath = '%s'" % destFilePath)
-                            if result.fetchone():
-                                print(disclosureTitle, " 该公告数据库中已存在\n")
-                                logging.info(disclosureTitle + " 该公告数据库中已存在")
-                                # label90 = Label(root, text=disclosureTitle + " 该公告数据库中已存在", font=('楷体', 12), fg='black')
-                                # label90.grid(row=9, column=0, columnspan=2, sticky=W)
-                            else:
-                                # 发送邮件
-                                mailResult = sendMails(receiveMail, companyCd2, companyName2, disclosureTitle, publishDate,
-                                          destFilePath)
-                                # print(mailResult)
-                                if mailResult == 1:
-                                    data = "NULL,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (
-                                        companyCd2, companyName2, disclosureTitle, publishDate, destFilePath)
-                                    # print(data, "\n")
-                                    c.execute('INSERT INTO announcement VALUES (%s)' % data)
-                                    db.commit()
-                                    print(disclosureTitle, " 该公告已存入数据库\n")
-                                    logging.info(disclosureTitle + " 该公告已存入数据库")
-                                # label90 = Label(root, text=disclosureTitle + " 该公告已存入数据库", font=('楷体', 12), fg='black')
-                                # label90.grid(row=9, column=0, columnspan=2, sticky=W)
-                                time.sleep(5)
-                    time.sleep(20)  # 获取一个页面后休息3秒，防止请求服务器过快
-                db.close()
+                            response3 = requests.post(URL, data)
+                            response4 = re.search('(?<=\(\[)(.*?)(?=]\))', response3.text).group()
+                            j = json.loads(response4)['listInfo']
+                            list = j['content']
+                            # 循环本页内容查询数据库、发送邮件
+                            for li in list:
+                                # print(li)
+                                companyCd2 = li['companyCd']
+                                companyName2 = li['companyName']
+                                destFilePath = "http://www.neeq.com.cn" + li['destFilePath']
+                                disclosureTitle = li['disclosureTitle']
+                                publishDate = li['publishDate']
+                                xxfcbj = li['xxfcbj']
+                                xxzrlx = li['xxzrlx']
+                                result = c.execute("SELECT * FROM announcement where filePath = '%s'" % destFilePath)
+                                if result.fetchone():
+                                    print(disclosureTitle, " 该公告数据库中已存在\n")
+                                    logging.info(disclosureTitle + " 该公告数据库中已存在")
+                                    # label90 = Label(root, text=disclosureTitle + " 该公告数据库中已存在", font=('楷体', 12), fg='black')
+                                    # label90.grid(row=9, column=0, columnspan=2, sticky=W)
+                                else:
+                                    # 发送邮件
+                                    mailResult = sendMails(receiveMail, companyCd2, companyName2, disclosureTitle, publishDate,
+                                              destFilePath)
+                                    # print(mailResult)
+                                    if mailResult == 1:
+                                        data = "NULL,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (
+                                            companyCd2, companyName2, disclosureTitle, publishDate, destFilePath)
+                                        # print(data, "\n")
+                                        c.execute('INSERT INTO announcement VALUES (%s)' % data)
+                                        db.commit()
+                                        print(disclosureTitle, " 该公告已存入数据库\n")
+                                        logging.info(disclosureTitle + " 该公告已存入数据库")
+                                    # label90 = Label(root, text=disclosureTitle + " 该公告已存入数据库", font=('楷体', 12), fg='black')
+                                    # label90.grid(row=9, column=0, columnspan=2, sticky=W)
+                                    time.sleep(5)
+                        time.sleep(20)  # 获取一个页面后休息3秒，防止请求服务器过快
+                    db.close()
 
-        if companyName != '':
-            companyName_list = companyName.split(';')
-            for keyword in companyName_list:
-                db = sqlite3.connect("announcement.db")
-                c = db.cursor()
-                data = {
-                    "disclosureType[]": 5,
-                    "disclosureSubtype[]": None,
-                    "page": 0,
-                    "startTime": startTime,
-                    "endTime": endTime,
-                    "companyCd": None,
-                    "isNewThree": 1,
-                    "keyword": keyword,
-                    "xxfcbj[]": None,
-                    "hyType[]": None,
-                    "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath", "publishDate",
-                                     "xxfcbj",
-                                     "destFilePath", "fileExt", "xxzrlx"],
-                    "sortfield": "xxssdq",
-                    "sorttype": "asc",
-                }
-                news_list = []
-                response1 = requests.post(URL, data)
-                # print(response1.text)
-                response2 = re.search('(?<=\(\[)(.*?)(?=]\))', response1.text).group()
-                # print(response2)
-                j = json.loads(response2)['listInfo']
-                if j['content'] == []:
-                    messagebox.showinfo('提示', '没有查询到信息，请检查公司代码或名称是否正确')
-                    return
-                else:
-                    totalElements = j['totalElements']
-                    totalPages = j['totalPages']
-                    logging.info("通过关键字%s查询到%d条公告，共%d页" % (keyword, totalElements, totalPages))
-                    # label70 = Label(root, text="通过代码%s查询到%d条公告，共%d页" % (ccd, totalElements, totalPages),
-                    #                 font=('楷体', 12), fg='black')
-                    # label70.grid(row=7, column=0, columnspan=2, sticky=W)
+            if companyName != '':
+                companyName_list = companyName.split(';')
+                for keyword in companyName_list:
+                    db = sqlite3.connect("announcement.db")
+                    c = db.cursor()
+                    data = {
+                        "disclosureType[]": 5,
+                        "disclosureSubtype[]": None,
+                        "page": 0,
+                        "startTime": startTime,
+                        "endTime": endTime,
+                        "companyCd": None,
+                        "isNewThree": 1,
+                        "keyword": keyword,
+                        "xxfcbj[]": None,
+                        "hyType[]": None,
+                        "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath", "publishDate",
+                                         "xxfcbj",
+                                         "destFilePath", "fileExt", "xxzrlx"],
+                        "sortfield": "xxssdq",
+                        "sorttype": "asc",
+                    }
+                    news_list = []
+                    response1 = requests.post(URL, data)
+                    # print(response1.text)
+                    response2 = re.search('(?<=\(\[)(.*?)(?=]\))', response1.text).group()
+                    # print(response2)
+                    j = json.loads(response2)['listInfo']
+                    if j['content'] == []:
+                        messagebox.showinfo('提示', '没有查询到信息，请检查公司代码或名称是否正确')
+                        return
+                    else:
+                        totalElements = j['totalElements']
+                        totalPages = j['totalPages']
+                        logging.info("通过关键字%s查询到%d条公告，共%d页" % (keyword, totalElements, totalPages))
+                        # label70 = Label(root, text="通过代码%s查询到%d条公告，共%d页" % (ccd, totalElements, totalPages),
+                        #                 font=('楷体', 12), fg='black')
+                        # label70.grid(row=7, column=0, columnspan=2, sticky=W)
 
-                    for n in range(totalPages):
-                        data = {
-                            "disclosureType[]": 5,
-                            "disclosureSubtype[]": None,
-                            "page": n,
-                            "startTime": startTime,
-                            "endTime": endTime,
-                            "companyCd": companyCd,
-                            "isNewThree": 1,
-                            "keyword": keyword,
-                            "xxfcbj[]": None,
-                            "hyType[]": None,
-                            "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath",
-                                             "publishDate",
-                                             "xxfcbj",
-                                             "destFilePath", "fileExt", "xxzrlx"],
-                            "sortfield": "xxssdq",
-                            "sorttype": "asc",
-                        }
-                        logging.info("正在处理第%d页" % (n + 1))
-                        # label80 = Label(root, text="正在处理第%d页" % (n + 1), font=('楷体', 12), fg='black')
-                        # label80.grid(row=8, column=0, columnspan=2, sticky=W)
+                        for n in range(totalPages):
+                            data = {
+                                "disclosureType[]": 5,
+                                "disclosureSubtype[]": None,
+                                "page": n,
+                                "startTime": startTime,
+                                "endTime": endTime,
+                                "companyCd": companyCd,
+                                "isNewThree": 1,
+                                "keyword": keyword,
+                                "xxfcbj[]": None,
+                                "hyType[]": None,
+                                "needFields[]": ["companyCd", "companyName", "disclosureTitle", "destFilePath",
+                                                 "publishDate",
+                                                 "xxfcbj",
+                                                 "destFilePath", "fileExt", "xxzrlx"],
+                                "sortfield": "xxssdq",
+                                "sorttype": "asc",
+                            }
+                            logging.info("正在处理第%d页" % (n + 1))
+                            # label80 = Label(root, text="正在处理第%d页" % (n + 1), font=('楷体', 12), fg='black')
+                            # label80.grid(row=8, column=0, columnspan=2, sticky=W)
 
-                        response3 = requests.post(URL, data)
-                        response4 = re.search('(?<=\(\[)(.*?)(?=]\))', response3.text).group()
-                        j = json.loads(response4)['listInfo']
-                        list = j['content']
-                        # 循环本页内容查询数据库、发送邮件
-                        for li in list:
-                            # print(li)
-                            companyCd2 = li['companyCd']
-                            companyName2 = li['companyName']
-                            destFilePath = "http://www.neeq.com.cn" + li['destFilePath']
-                            disclosureTitle = li['disclosureTitle']
-                            publishDate = li['publishDate']
-                            xxfcbj = li['xxfcbj']
-                            xxzrlx = li['xxzrlx']
-                            result = c.execute("SELECT * FROM announcement where filePath = '%s'" % destFilePath)
-                            if result.fetchone():
-                                print(disclosureTitle, " 该公告数据库中已存在\n")
-                                logging.info(disclosureTitle + " 该公告数据库中已存在")
-                                # label90 = Label(root, text=disclosureTitle + " 该公告数据库中已存在", font=('楷体', 12), fg='black')
-                                # label90.grid(row=9, column=0, columnspan=2, sticky=W)
-                            else:
-                                # 发送邮件
-                                mailResult = sendMails(receiveMail, companyCd2, companyName2, disclosureTitle, publishDate,
-                                          destFilePath)
-                                # print(mailResult)
-                                if mailResult == 1:
-                                    data = "NULL,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (
-                                        companyCd2, companyName2, disclosureTitle, publishDate, destFilePath)
-                                    # print(data, "\n")
-                                    c.execute('INSERT INTO announcement VALUES (%s)' % data)
-                                    db.commit()
-                                    print(disclosureTitle, " 该公告已存入数据库\n")
-                                    logging.info(disclosureTitle + " 该公告已存入数据库")
+                            response3 = requests.post(URL, data)
+                            response4 = re.search('(?<=\(\[)(.*?)(?=]\))', response3.text).group()
+                            j = json.loads(response4)['listInfo']
+                            list = j['content']
+                            # 循环本页内容查询数据库、发送邮件
+                            for li in list:
+                                # print(li)
+                                companyCd2 = li['companyCd']
+                                companyName2 = li['companyName']
+                                destFilePath = "http://www.neeq.com.cn" + li['destFilePath']
+                                disclosureTitle = li['disclosureTitle']
+                                publishDate = li['publishDate']
+                                xxfcbj = li['xxfcbj']
+                                xxzrlx = li['xxzrlx']
+                                result = c.execute("SELECT * FROM announcement where filePath = '%s'" % destFilePath)
+                                if result.fetchone():
+                                    print(disclosureTitle, " 该公告数据库中已存在\n")
+                                    logging.info(disclosureTitle + " 该公告数据库中已存在")
+                                    # label90 = Label(root, text=disclosureTitle + " 该公告数据库中已存在", font=('楷体', 12), fg='black')
+                                    # label90.grid(row=9, column=0, columnspan=2, sticky=W)
+                                else:
+                                    # 发送邮件
+                                    mailResult = sendMails(receiveMail, companyCd2, companyName2, disclosureTitle, publishDate,
+                                              destFilePath)
+                                    # print(mailResult)
+                                    if mailResult == 1:
+                                        data = "NULL,\'%s\',\'%s\',\'%s\',\'%s\',\'%s\'" % (
+                                            companyCd2, companyName2, disclosureTitle, publishDate, destFilePath)
+                                        # print(data, "\n")
+                                        c.execute('INSERT INTO announcement VALUES (%s)' % data)
+                                        db.commit()
+                                        print(disclosureTitle, " 该公告已存入数据库\n")
+                                        logging.info(disclosureTitle + " 该公告已存入数据库")
 
-                                # label90 = Label(root, text=disclosureTitle + " 该公告已存入数据库", font=('楷体', 12), fg='black')
-                                # label90.grid(row=9, column=0, columnspan=2, sticky=W)
-                                time.sleep(1)
-                    time.sleep(3)  # 获取一个页面后休息3秒，防止请求服务器过快
-                db.close()
-        logging.info("本次查询结束 .，10分钟后开始下次查询")
-        time.sleep(600)
-    # for companyCd in companyCd_list:
+                                    # label90 = Label(root, text=disclosureTitle + " 该公告已存入数据库", font=('楷体', 12), fg='black')
+                                    # label90.grid(row=9, column=0, columnspan=2, sticky=W)
+                                    time.sleep(1)
+                        time.sleep(3)  # 获取一个页面后休息3秒，防止请求服务器过快
+                    db.close()
+            logging.info("本次查询结束 .，10分钟后开始下次查询")
+            label70 = Label(root, text='本次查询结束 .，10分钟后开始下次查询', font=('楷体', 10), fg='black')
+            label70.grid(row=7, column=0, columnspan=2, sticky=W)
+            time.sleep(600)
+    t = Thread(target=get)
+    t.start()
 
 
 logging.basicConfig(filename='./log.log', format='[%(asctime)s-%(filename)s-%(levelname)s:%(message)s]',
@@ -394,8 +399,8 @@ label40 = Label(root, text='收件邮箱：', font=('楷体', 12), fg='black')
 label40.grid(row=4, column=0)
 # 文本输入框-收件邮箱
 receiveMail = StringVar()
-receiveMail.set('610559273@qq.com')
-# receiveMail.set('lusheng1234@126.com')
+# receiveMail.set('610559273@qq.com')
+receiveMail.set('lusheng1234@126.com')
 entry41 = Entry(root, textvariable=receiveMail, font=('微软雅黑', 12), width=35)
 entry41.grid(row=4, column=1, sticky=W)
 

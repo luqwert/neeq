@@ -54,7 +54,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.nogui">
+  <component name="RunManager" selected="Python.gui">
     <configuration name="gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neeq" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -167,10 +167,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.nogui" />
-        <item itemvalue="Python.wxtuopan" />
         <item itemvalue="Python.gui" />
         <item itemvalue="Python.tuopan" />
+        <item itemvalue="Python.nogui" />
+        <item itemvalue="Python.wxtuopan" />
         <item itemvalue="Python.tuopan2" />
       </list>
     </recent_temporary>
@@ -192,7 +192,8 @@
       <workItem from="1597149832954" duration="947000" />
       <workItem from="1597150807681" duration="7111000" />
       <workItem from="1597281714492" duration="13474000" />
-      <workItem from="1597304511962" duration="993000" />
+      <workItem from="1597304511962" duration="2820000" />
+      <workItem from="1597731295981" duration="2919000" />
     </task>
     <servers />
   </component>
@@ -208,22 +209,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="222" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1596782649987" />
-    <state width="1341" height="327" key="GridCell.Tab.0.bottom" timestamp="1597301151613">
+    <state width="1341" height="327" key="GridCell.Tab.0.bottom" timestamp="1597737864187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1341" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597301151613" />
-    <state width="1341" height="327" key="GridCell.Tab.0.center" timestamp="1597301151613">
+    <state width="1341" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1597737864187" />
+    <state width="1341" height="327" key="GridCell.Tab.0.center" timestamp="1597737864186">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1341" height="327" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597301151613" />
-    <state width="1341" height="327" key="GridCell.Tab.0.left" timestamp="1597301151613">
+    <state width="1341" height="327" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1597737864186" />
+    <state width="1341" height="327" key="GridCell.Tab.0.left" timestamp="1597737864186">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1341" height="327" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597301151613" />
-    <state width="1341" height="327" key="GridCell.Tab.0.right" timestamp="1597301151613">
+    <state width="1341" height="327" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1597737864186" />
+    <state width="1341" height="327" key="GridCell.Tab.0.right" timestamp="1597737864187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1341" height="327" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597301151613" />
+    <state width="1341" height="327" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1597737864187" />
     <state width="1340" height="328" key="GridCell.Tab.1.bottom" timestamp="1596789916077">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -264,8 +265,8 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/neeq$nogui.coverage" NAME="nogui Coverage Results" MODIFIED="1597300446245" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neeq$tuopan2.coverage" NAME="tuopan2 Coverage Results" MODIFIED="1597283930157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/neeq$tuopan.coverage" NAME="tuopan Coverage Results" MODIFIED="1597287442407" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/neeq$gui.coverage" NAME="gui Coverage Results" MODIFIED="1597288113582" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neeq$tuopan.coverage" NAME="tuopan Coverage Results" MODIFIED="1597737799991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neeq$gui.coverage" NAME="gui Coverage Results" MODIFIED="1597737852039" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neeq$init_db.coverage" NAME="init_db Coverage Results" MODIFIED="1596764415753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neeq$wxtuopan.coverage" NAME="wxtuopan Coverage Results" MODIFIED="1597293237623" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neeq$announcement.coverage" NAME="announcement Coverage Results" MODIFIED="1596764464194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
