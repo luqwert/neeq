@@ -54,6 +54,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="neeq" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="neeq" />
+      </console-settings>
+    </option>
+  </component>
   <component name="RunManager" selected="Python.gui">
     <configuration name="gui" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neeq" />
@@ -194,6 +202,7 @@
       <workItem from="1597281714492" duration="13474000" />
       <workItem from="1597304511962" duration="2820000" />
       <workItem from="1597731295981" duration="2919000" />
+      <workItem from="1597815623335" duration="931000" />
     </task>
     <servers />
   </component>
@@ -209,6 +218,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="715" y="222" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1596782649987" />
+    <state x="694" y="281" key="EnvironmentVariablesDialog" timestamp="1597815695654">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="694" y="281" key="EnvironmentVariablesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1597815695654" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1597816757770">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1597816757770" />
     <state width="1341" height="327" key="GridCell.Tab.0.bottom" timestamp="1597737864187">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -241,10 +258,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1340" height="328" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1596789916077" />
-    <state x="461" y="162" key="SettingsEditor" timestamp="1597281733485">
+    <state x="461" y="162" key="SettingsEditor" timestamp="1597815742193">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597281733485" />
+    <state x="461" y="162" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1597815742193" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
